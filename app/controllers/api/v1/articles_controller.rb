@@ -4,10 +4,10 @@ module Api
       respond_to :articles_json_v1, :json
 
       def index
-        articles = [
-          { id: 123, name: 'The Things' },
-        ]
+        articles = []
+        articles << Article.new(456,'The Things')
 
+        # without serializer
         respond_with(articles)
       end
     end
