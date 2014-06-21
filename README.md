@@ -17,6 +17,17 @@ curl -H "Accept: application/vnd.articles.v2" http://localhost:3000/api/articles
 This is the github style api with version numbers.
 
 
+## Also a a study
+
+This is also a study on the size of a messagepack response versus
+a typical json response.
+
+There is a html page setup on the homepage which shows the outcome.
+
+As of this writing, with only 2 articles, the messagepack response is
+50% less than JSON response.
+
+
 ## Sample usage of MessagePack
 
 ```ruby
