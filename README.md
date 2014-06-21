@@ -1,4 +1,4 @@
-## Rails API Versionin Example
+## Rails API Versioning Example
 
 This is an example of establishing API versioning on top of an existing,
 unversioned Rails API. versioned apis inside /api/v1 and /api/v2
