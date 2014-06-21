@@ -30,14 +30,14 @@ As of this writing, with only 2 articles, the messagepack response is
 With 50000 articles, the response times are as follows:
 
 ```
-`Request Format: MPAC`
+`**`Request Format: MPAC`**`
 Path: /api/articles.mpac
 `Page Duration: 178.8ms`
 `View Duration: 0.2ms`
 DB Duration: 0.0ms
 Completed 200 OK in 179ms (Views: 0.2ms | ActiveRecord: 0.0ms)
 
-`Request Format: JSON`
+`**`Request Format: JSON`**`
 Path: /api/articles
 `Page Duration: 4023.4ms`
 `View Duration: 3921.7ms`
@@ -61,5 +61,3 @@ obj2 = MessagePack.unpack(msg) # get orig hash back
 ```
 
 ## TODO
-
-* Use ActiveSupport notifications to measure run times ?
