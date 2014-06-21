@@ -17,3 +17,5 @@
 
 *.png
 automate.rb
+
+benchmark.rb
