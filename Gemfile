@@ -41,3 +41,7 @@ gem 'spring',        group: :development
 gem 'rspec-rails', group: :test
 
 gem 'oat'
+
+gem 'selenium-webdriver', require: 'selenium-webdriver'
+
+gem 'msgpack', '~> 0.5.8', require: 'msgpack'

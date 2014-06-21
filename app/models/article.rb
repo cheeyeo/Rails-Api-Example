@@ -5,4 +5,8 @@ class Article
     @id = id
     @name = name
   end
+
+  def to_msgpack(*args)
+    {id: id, name: name}.to_msgpack(*args)
+  end
 end

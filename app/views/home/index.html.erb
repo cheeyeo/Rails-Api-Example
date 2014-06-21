@@ -1,0 +1,62 @@
+<h2>Test of API responses</h2>
+<p>This page shows the various responses from making an api call to '/api/articles'. The result is a 2 element array of articles</p>
+<br/>
+
+<h2>API v1</h2>
+
+<h2>API v2</h2>
+<h3>MessagePack Response</h3>
+<div id="mpac-res">
+  <div id="size">Content-Length: </div>
+</div>
+
+<h3>JSON Response</h3>
+<div id="json-res">
+  <div id="size">Content-Length: </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    function gen_html(obj){
+      var html="<p>Article ID: " + obj.id + "<br/>Article Title: " + obj.name + "</p>";
+
+      return html;
+    }
+
+    function content_length(jqXHR){
+      return jqXHR.getResponseHeader("Content-Length")/1024;
+    }
+
+    // we are using yarinage.js here as msgpack requires xhr request obj
+    var yari = new Yarinage({
+      success: function(data,jqXHR){
+        $("#mpac-res > #size").append(content_length(jqXHR));
+        $.each(data, function(i,obj){
+          $("#mpac-res").append(gen_html(obj));
+        });
+
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+
+    yari.load('/api/articles.mpac');
+
+    // json request
+    $.get("/api/articles")
+      .done(function(data,status,jqXHR){
+        $("#json-res > #size").append(content_length(jqXHR));
+
+        $.each(data.articles, function(i,obj){
+          $("#json-res").append(gen_html(obj));
+        });
+      })
+      .fail(function(){
+        alert("error");
+      })
+      .always(function(){
+        alert("finished");
+      });
+  });
+</script>
