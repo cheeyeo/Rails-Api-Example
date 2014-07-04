@@ -9,8 +9,8 @@ describe 'articles endpoint' do
         json = JSON.parse(response.body)
         articles = json.fetch('articles')
 
-        expect(articles.count).to eq(1)
-        expect(articles.first['name']).to eq('The Things')
+        expect(articles.count).to eq(50000)
+        expect(articles.first['name']).to eq('Article 0')
       end
 
       it 'responds with v2 as default and with .json suffix' do
@@ -19,8 +19,8 @@ describe 'articles endpoint' do
         json = JSON.parse(response.body)
         articles = json.fetch('articles')
 
-        expect(articles.count).to eq(1)
-        expect(articles.first['name']).to eq('The Things')
+        expect(articles.count).to eq(50000)
+        expect(articles.first['name']).to eq('Article 0')
       end
     end
 
@@ -53,8 +53,8 @@ describe 'articles endpoint' do
         articles = json.fetch('articles')
 
         # these values are hard-coded in the controller as example
-        expect(articles.count).to eq(1)
-        expect(articles.first['name']).to eq('The Things')
+        expect(articles.count).to eq(50000)
+        expect(articles.first['name']).to eq('Article 0')
       end
 
       it 'accepts requests with .json suffix' do
@@ -63,8 +63,20 @@ describe 'articles endpoint' do
         json = JSON.parse(response.body)
         articles = json.fetch('articles')
 
-        expect(articles.count).to eq(1)
-        expect(articles.first['name']).to eq('The Things')
+        expect(articles.count).to eq(50000)
+        expect(articles.first['name']).to eq('Article 0')
+      end
+
+      it 'accepts requests with a .mpac suffix' do
+        get '/api/articles.mpac', {}, HTTP_ACCEPT: 'application/x-msgpack'
+
+        mpac_hsh = MessagePack.unpack(response.body)
+        articles = mpac_hsh.fetch('articles')
+
+        expect(articles.count).to eq(50000)
+        expect(articles.first['name']).to eq('Article 0')
+
+        expect(response.headers["Content-Type"]).to eql("application/x-msgpack; charset=utf-8")
       end
     end
   end
